@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
-  <ModulePrefs title="__UP_myname__s World" author="LindenLuda"/>
+  <ModulePrefs title="__UP_myname__s World"/>
+  <ModulePrefs title_url="https://github.com/LindenLuda/iGoogleGadget/blob/master/luda-gadget-simple.xml"/>
+  <ModulePrefs category="newbie"/>
+  <ModulePrefs description="My test gadget - the first one ever."/>
+  <ModulePrefs author="LindenLuda"/>
+  <ModulePrefs author_email="lmasterson@charter.net"/>
+  <ModulePrefs screenshot=""/>
+  <ModulePrefs thumbnail=""/>
+  <ModulePrefs height="250"/>
   <UserPref name="myname" display_name="Name"/>
   <UserPref name="question" display_name"Do you like flare?" datatype="boolean"/>
   <UserPref="mycolor" display_name="Favorite Color" default="Yellow" datatype="enum">
@@ -15,35 +23,27 @@
       <div id="content1"></div>
       <script type="text/javascript">
         var prefs = new gadgets.Prefs();
-        
         function displayGreeting(){
           var today = new Date();
           var time = today.getTime();
           var html = "";
-          
           var hour = today.getHours();
           var salutation = "Afternoon";
-          
           if(hour < 12) {
             salutation = "Morning";
            } else if(hour > 17) {
             salutation = "Evening";
            }
-           
           var element = document.getElementById('content1');
           element.style.backgroundColor = prefs.getString("mycolor");
-          
           html += "<br>Good " + salutation + ", " prefs.getString("myname") + "! <br><br>";
-          
           if(prefs.getBool("question") == true) {
             html += "You LOOOOOOOVE flare!" 
           } else {
             html += "You are pretty drab.<br>:(";
           }
-          
           element.inerHTML = html;
         }
-        
         gadgets.util.registerOnLoadHandler(displayGreeting);
       </script>
     ]]>
