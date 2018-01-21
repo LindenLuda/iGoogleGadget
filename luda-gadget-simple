@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="__UP_myname__s World" author="LindenLuda"/>
+  <UserPref name="myname" display_name="Name"/>
+  <UserPref name="question" display_name"Do you like flare?" datatype="boolean"/>
+  <UserPref="mycolor" display_name="Favorite Color" default="Yellow" datatype="enum">
+    <EnumValue value="Yellow"/>
+    <EnumValue value="Red"/>
+    <EnumValue value="Purple"/>
+    <EnumValue value ="Navy"/>
+    <EnumValue value="Magenta"/>  
+  </UserPref>
+  <Content type="html">
+    <![CDATA[
+      <div id="content1"></div>
+      <script type="text/javascript">
+        var prefs = new gadgets.Prefs();
+        
+        function displayGreeting(){
+          var today = new Date();
+          var time = today.getTime();
+          var html = "";
+          
+          var hour = today.getHours();
+          var salutation = "Afternoon";
+          
+          if(hour < 12) {
+            salutation = "Morning";
+           } else if(hour > 17) {
+            salutation = "Evening";
+           }
+           
+          var element = document.getElementById('content1');
+          element.style.backgroundColor = prefs.getString("mycolor");
+          
+          html += "<br>Good " + salutation + ", " prefs.getString("myname") + "! <br><br>";
+          
+          if(prefs.getBool("question") == true) {
+            html += "You LOOOOOOOVE flare!" 
+          } else {
+            html += "You are pretty drab.<br>:(";
+          }
+          
+          element.inerHTML = html;
+        }
+        
+        gadgets.util.registerOnLoadHandler(displayGreeting);
+      </script>
+    ]]>
+  </Content>
+</Module>
